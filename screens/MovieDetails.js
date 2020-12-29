@@ -1,5 +1,5 @@
 import React from "react"
-import { View, Text, StyleSheet, Image, Linking } from "react-native"
+import { View, Text, StyleSheet, Image, Linking, ScrollView } from "react-native"
 import { elementBackgroundColor } from "../colors"
 import StyledButton from "../components/StyledButton"
 import { backgroundColor } from "../colors"
@@ -12,26 +12,24 @@ const MovieDetails = props => {
     }
 
     return (
-        <View style={styles.container}>
+        <ScrollView style={styles.container}>
             <View style={styles.rowContainer}>
                 <Image source={{ uri: props.Poster }} style={styles.image} />
                 <View style={styles.colContainer} >
                     <Text style={styles.title}>{props.Title}</Text>
-                    <View style={[styles.spaceBetweenContainer, {width: "100%"}]}>
+                    <View style={[styles.spaceBetweenContainer, { width: "100%" }]}>
                         <Text>{props.Year}</Text>
-                        <StyledButton onPress={openURL}/>
+                        <StyledButton onPress={openURL} />
                     </View>
 
                 </View>
             </View>
-
-        </View>
+            <Text style={styles.description}>{props.Description}</Text>
+        </ScrollView>
     )
 }
 
 export default MovieDetails
-
-
 
 const styles = StyleSheet.create({
     container: {
@@ -66,4 +64,11 @@ const styles = StyleSheet.create({
         fontSize: 24,
         marginBottom: 10,
     },
+    description: {
+        padding: 10,
+        marginTop: 10,
+        borderRadius: 5,
+        borderWidth: 2,
+        borderColor: elementBackgroundColor
+    }
 })
